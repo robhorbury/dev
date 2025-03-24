@@ -1,0 +1,3 @@
+[submodule "nvim"]
+	path = env/.config/nvim
+	url = https://github.com/robhorbury/nvim-setup
