@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+brew install llvm lld llvm-dev liblld-dev clang libclang-dev libglib2.0-dev libgtk-4-dev libadwaita-1-dev git
+brew install --cask ghostty
+

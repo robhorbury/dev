@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+brew install cmake gettext lua5.1 liblua5.1-0-dev
+brew install ripgrep fzf
+brew install neovim
