@@ -1,10 +1,30 @@
 #!/usr/bin/env bash
+switch_to() {
+    if [[ -z $TMUX ]]; then
+        tmux attach-session -t $1
+    else
+        tmux switch-client -t $1
+    fi
+}
+
+has_session() {
+    tmux list-sessions | grep -q "^$1:"
+}
+
+hydrate() {
+    if [ -f $2/.tmux-sessionizer ]; then
+        tmux send-keys -t $1 "source $2/.tmux-sessionizer" c-M
+    elif [ -f $HOME/.tmux-sessionizer ]; then
+        tmux send-keys -t $1 "source $HOME/.tmux-sessionizer" c-M
+    fi
+}
 
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    dirs=$(find -L ~/personal ~/work ~/work/asda -mindepth 1 -maxdepth 1 -type d)
-    selected=$(printf "%s\n%s\n%s\n%s" "$dirs" | fzf)
+    # If someone wants to make this extensible, i'll accept
+    # PR
+    selected=$(find ~/personal ~/personal/dev ~/work/asda ~/work -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
@@ -14,35 +34,15 @@ fi
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
-# OK - tmux is not running
-if [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c "$selected"
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s $selected_name -c $selected
+    hydrate $selected_name $selected
     exit 0
 fi
 
-# OK - tmux is running but client is not attached, session with selected_name does not exist
-if [[ -z $TMUX ]] && ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -s $selected_name -c "$selected"
-    tmux a -t $selected_name
-    exit 0
+if ! has_session $selected_name; then
+    tmux new-session -ds $selected_name -c $selected
+    hydrate $selected_name $selected
 fi
 
-# OK - tmux is running but client is not attached, session with selected_name exists
-if [[ -z $TMUX ]] && tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux a -t $selected_name
-    exit 0
-fi
-
-# OK - tmux is running and client is attached, session with selected_name does not exist
-if [[ ! -z $TMUX ]] && ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c "$selected"
-    tmux switch-client -t $selected_name
-    exit 0
-fi
-
-# OK - tmux is running and client is attached, session with selected_name exists
-if [[ ! -z $TMUX ]] && tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux switch-client -t $selected_name
-    exit 0
-fi
-
+switch_to $selected_name
