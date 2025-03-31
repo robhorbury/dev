@@ -2,6 +2,7 @@
 # if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
 #     builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/bash/ghostty.bash"
 # fi
+export XDG_CONFIG_HOME=$HOME/.config/
 
 # Define colors correctly
 grn='\033[01;32m'  # Green
@@ -15,7 +16,7 @@ alias ruff="python -m ruff"
 
 alias hg="history | grep"
 alias vim="nvim"
-alias sshagent="eval $(ssh-agentm -s)"
+alias sshagent="eval $(ssh-agent -s)"
 alias sshagent_kill="ps aux | grep ssh-agent | awk '{print $1}' | xargs kill"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
