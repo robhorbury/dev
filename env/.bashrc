@@ -9,8 +9,14 @@ cyn='\033[01;36m'  # Cyan
 blu='\033[01;34m'  # Blue
 clr='\033[00m'     # Reset color
 
+alias pip="python -m pip"
+alias pytest="python -m pytest"
+alias ruff="python -m ruff"
+
 alias hg="history | grep"
 alias vim="nvim"
+alias sshagent="eval $(ssh-agentm -s)"
+alias sshagent_kill="ps aux | grep ssh-agent | awk '{print $1}' | xargs kill"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
