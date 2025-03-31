@@ -64,6 +64,7 @@ copy() {
 update_files $DEV_ENV/env/.config $XDG_CONFIG_HOME
 update_files $DEV_ENV/env/.local $HOME/.local
 
+
 copy $DEV_ENV/env/.bashrc $HOME/.bashrc
 copy $DEV_ENV/env/.bash_profile $HOME/.bash_profile
 copy $DEV_ENV/env/.zshrc $HOME/.zshrc
