@@ -11,10 +11,14 @@ clr='\033[00m'     # Reset color
 
 alias hg="history | grep"
 alias vim="nvim"
-# tmux=$(which tmux)
-# alias tmux="$tmux -2"
-eval "$(zoxide init bash)"
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac OSX
+    tmux=$(which tmux)
+    alias tmux="$tmux -2"
+fi
+
+eval "$(zoxide init bash)"
 
 
 export PATH=$PATH:$HOME/.local/bin
@@ -48,3 +52,4 @@ PROMPT_COMMAND=bash_prompt
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
