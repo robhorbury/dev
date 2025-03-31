@@ -25,7 +25,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias tmux="$tmux -2"
 fi
 
-eval "$(zoxide init bash)"
 
 
 export PATH=$PATH:$HOME/.local/bin
@@ -60,3 +59,4 @@ PROMPT_COMMAND=bash_prompt
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+eval "$(zoxide init bash)"
