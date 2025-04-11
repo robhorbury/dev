@@ -66,8 +66,23 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
     tmux=$(which tmux)
     alias tmux="$tmux -2"
-fi
 
+    # Function to set up the prompt
+    function bash_prompt() {
+        PS1="${cyn}$(user):${blu} \W${grn}$(git_branch)${clr} \$ "
+    }
+
+    # Apply the prompt function dynamically
+    PROMPT_COMMAND=bash_prompt
+else
+    # Function to set up the prompt
+    function bash_prompt() {
+        PS1="${cyn}$(user):${blu} \W${orange}$(git_branch)${clr} \$ "
+    }
+
+    # Apply the prompt function dynamically
+    PROMPT_COMMAND=bash_prompt
+fi
 function venva () {
   source $MYENV/Scripts/activate
 }
