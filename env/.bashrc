@@ -25,6 +25,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias tmux="$tmux -2"
 fi
 
+export UV_CONFIG_FILE=$XDG_CONFIG_HOME/uv/uv.toml
+
 
 
 export PATH=$PATH:$HOME/.local/bin
