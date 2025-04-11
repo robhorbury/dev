@@ -71,7 +71,7 @@ else
     # Windows setup
     # Function to set up the prompt
     function bash_prompt() {
-        PS1="${cyn}${NAME}:${blu} \W${dull_cyan}$(git_branch)${clr} \$ "
+        PS1="${washed_out_orange}${NAME}:${cyn} \W${dull_cyan}$(git_branch)${clr} \$ "
     }
 
     # Apply the prompt function dynamically
