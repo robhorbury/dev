@@ -17,8 +17,6 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.local/scripts
 bind '"\C-f":"tmux-sessionizer\n"'
 
-eval 'git config --global core.editor "nvim"'
-eval 'git config --global rerere.enabled true'
 
 MYENV="./.venv"
 

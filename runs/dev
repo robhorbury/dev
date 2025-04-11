@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+git config --global user.name "Rob Horbury"
+
+git config --global core.editor "nvim"
+git config --global rerere.enabled true
+git config --global push.autoSetupRemote true
+git config --global init.defaultBranch main
+git config --global submodule.recurse true
+git config --global branch.sort -committerdate
+git config --global http.sslbackend schannel
+git config --global http.postbuffer 500000000
+git config --global http.sslverify true
+git config --global diff.tool vimdiff
+git config --global core.excludeFiles $XDG_CONFIG_HOME/git/ignore
+
+git config --global includeif.gitdir:"~/work/asda/**.config" ~/work/asda/.gitconfig
+git config --global includeif.gitdir:"~/personal/**.config" ~/personal/.gitconfig
+
+
+# Setup ssh if not existing:
+if [ -f "$HOME/.ssh/github-personal" ]; then
+  echo "personal SSH key exists"
+else
+  echo "Creating personal ssh key"
+  ssh-keygen -t ed25519 -f ~/.ssh/github-personal
+fi
+
+if [ -f "$HOME/.ssh/github-asda" ]; then
+  echo "Asda SSH key exists"
+else
+  echo "Creating asda ssh key"
+  ssh-keygen -t ed25519 -f ~/.ssh/github-asda
+fi

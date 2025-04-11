@@ -71,3 +71,6 @@ copy $DEV_ENV/env/.bash_logout $HOME/.bash_logout
 copy $DEV_ENV/env/.zshrc $HOME/.zshrc
 copy $DEV_ENV/dev-env $HOME/.local/scripts/dev-env
 copy $DEV_ENV/env/.xprofile $HOME/.xprofile
+
+copy $DEV_ENV/env/.ssh_config $HOME/.ssh/config
+copy $DEV_ENV/env/.personal_gitconfig $HOME/personal/.gitconfig
