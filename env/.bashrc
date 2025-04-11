@@ -24,18 +24,23 @@ alias tree="git ls-files --exclude-standard | sed -e 's;[^/]*/;|____;g;s;____|; 
 alias load_bash="source $HOME/.bash_profile"
 
 function clean_git {
-    git fetch --prune
     if [ -z "$1" ]
     then
+        git fetch --prune
         git branch -vv | grep 'gone]' | awk '{print $1}' | xargs git branch -d
     else
         case $1 in
             -f)
-            echo "FORCE"
+            echo "Forcing deletion"
+            git fetch --prune
+            git branch -vv | grep 'gone]' | awk '{print $1}' | xargs git branch -D
             ;;
-            -h "Pass -f flag to force branch deletion"
+            -h)
+            echo "Pass -f flag to force branch deletion"
             ;;
-        done
+            *)
+            echo "Invalid flag: '$1'"
+        esac
     fi
 }
 
