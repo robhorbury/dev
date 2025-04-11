@@ -67,6 +67,7 @@ update_files $DEV_ENV/env/.local $HOME/.local
 
 copy $DEV_ENV/env/.bashrc $HOME/.bashrc
 copy $DEV_ENV/env/.bash_profile $HOME/.bash_profile
+copy $DEV_ENV/env/.bash_logout $HOME/.bash_logout
 copy $DEV_ENV/env/.zshrc $HOME/.zshrc
 copy $DEV_ENV/dev-env $HOME/.local/scripts/dev-env
 copy $DEV_ENV/env/.xprofile $HOME/.xprofile

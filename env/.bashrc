@@ -12,12 +12,15 @@ clr='\033[00m'     # Reset color
 
 alias pip="python -m pip"
 alias pytest="python -m pytest"
+alias qpytest="LOG_LEVEL=CRITICAL pytest --quiet"
 alias ruff="python -m ruff"
 
 alias hg="history | grep"
 alias vim="nvim"
 alias sshagent="eval $(ssh-agent -s)"
 alias sshagent_kill="ps aux | grep ssh-agent | awk '{print $1}' | xargs kill"
+
+alias load_bash="source $HOME/.bash_profile"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
