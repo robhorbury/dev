@@ -23,6 +23,28 @@ alias tree="git ls-files --exclude-standard | sed -e 's;[^/]*/;|____;g;s;____|; 
 
 alias load_bash="source $HOME/.bash_profile"
 
+function clean_git {
+    git fetch --prune
+    if [ -z "$1" ]
+    then
+        git branch -vv | grep 'gone]' | awk '{print $1}' | xargs git branch -d
+    else
+        case $1 in
+            -f)
+            echo "FORCE"
+            ;;
+            -h "Pass -f flag to force branch deletion"
+            ;;
+        done
+    fi
+}
+
+
+function clean_git_F {
+    git fetch --prune
+    git branch -vv | grep 'gone]' | awk '{print $1}' | xargs git branch -F
+}
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
     tmux=$(which tmux)
