@@ -16,10 +16,13 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.local/scripts
 
 # Define colors correctly
-grn='\033[01;32m'  # Green
-cyn='\033[01;36m'  # Cyan
-blu='\033[01;34m'  # Blue
-clr='\033[00m'     # Reset color
+grn='\033[01;32m\]'  # Green
+cyn='\033[01;36m\]'  # Cyan
+blu='\033[01;34m\]'  # Blue
+orange='\033[38;5;208m\]'
+dull_cyan='\033[38;5;72m\]'
+washed_out_orange='\033[38;5;216m\]'
+clr='\033[00m\]'     # Reset color
 
 # Custom aliases
 alias pip="python -m pip"
@@ -68,7 +71,7 @@ else
     # Windows setup
     # Function to set up the prompt
     function bash_prompt() {
-        PS1="${cyn}${NAME}:${blu} \W${orange}$(git_branch)${clr} \$ "
+        PS1="${cyn}${NAME}:${blu} \W${dull_cyan}$(git_branch)${clr} \$ "
     }
 
     # Apply the prompt function dynamically
