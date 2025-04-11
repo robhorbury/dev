@@ -33,6 +33,9 @@ log "env: $DEV_ENV"
 
 update_files() {
     log "copying over files from: $1"
+    if [[ ! -f $2 ]]; then
+        mkdir $2
+    fi
     pushd $1 &> /dev/null
     (
         configs=`find . -mindepth 1 -maxdepth 1 -type d`
@@ -48,6 +51,10 @@ update_files() {
             if [[ $dry_run == "0" ]]; then
                 cp -r ./$c $2
             fi
+        done
+        files=`find . -mindepth 1 -maxdepth 1 -type f`
+        for file in $files; do
+            copy "$1/$file" "$2/$file"
         done
 
     )
@@ -67,7 +74,7 @@ copy() {
 
 update_files $DEV_ENV/env/.config $XDG_CONFIG_HOME
 update_files $DEV_ENV/env/.local $HOME/.local
-
+update_files $DEV_ENV/env/.bashrc.d $HOME/.bashrc.d
 
 copy $DEV_ENV/env/.bashrc $HOME/.bashrc
 copy $DEV_ENV/env/.bash_profile $HOME/.bash_profile
