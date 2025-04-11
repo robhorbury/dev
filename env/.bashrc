@@ -2,7 +2,25 @@
 # if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
 #     builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/bash/ghostty.bash"
 # fi
+
+
 export XDG_CONFIG_HOME=$HOME/.config/
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+export UV_CONFIG_FILE=$XDG_CONFIG_HOME/uv/uv.toml
+export PIP_CONFIG_FILE=$XDG_CONFIG_HOME/pip/pip.ini
+export PYTHONDONTWRITEBYTECODE=1
+
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/scripts
+bind '"\C-f":"tmux-sessionizer\n"'
+
+eval 'git config --global core.editor "nvim"'
+eval 'git config --global rerere.enabled true'
+
+MYENV="./.venv"
 
 # Define colors correctly
 grn='\033[01;32m'  # Green
@@ -45,10 +63,6 @@ function clean_git {
 }
 
 
-function clean_git_F {
-    git fetch --prune
-    git branch -vv | grep 'gone]' | awk '{print $1}' | xargs git branch -F
-}
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
@@ -56,57 +70,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias tmux="$tmux -2"
 fi
 
-export UV_CONFIG_FILE=$XDG_CONFIG_HOME/uv/uv.toml
-
-
-
-export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:$HOME/.local/scripts
-bind '"\C-f":"tmux-sessionizer\n"'
-
-function avenv {
-    # If no paramerter is passed try to activate .venv first. If .venv doesnt exist try with the next closest one. If both .venv37 and .venv38 exist. It will pick .venv37
-    # If parameter is passed, try to activate that one
-    if [ -z "$1" ]
-    then
-
-        if [ -d ".venv" ] 
-        then
-            source .venv/bin/activate 
-            print "Activated virtualenv: .venv" 
-
-        else
-            # Piping the output of find command to fzf to select a virtual env.
-            virtual_env=$(find -maxdepth 2  -type d -name ".venv*"  | fzf)
-            print "Activated virtualenv: $virtual_env" 
-            source "$virtual_env"/bin/activate
-        fi 
-
-    else
-         source "$1"/bin/activate; print "Activated virtualenv: $1" || print "Failed to activate virtualenv: $1"
-
-    fi
+function venva () {
+  source $MYENV/Scripts/activate
 }
+
 
 function dvenv {
-
-    if [ -z "$1" ]
-    then
         deactivate || print "Failed to deactivate virtualenv: .venv"
-        print "Deactivated virtualenv"
-    else
-        deactivate "$1" || print "Failed to deactivate virtualenv: $1"
-        print "Deactivated virtualenv" 
-    fi
 }
-alias 'denv'='dvenv'
-alias 'aenv'='avenv'
 
-eval 'git config --global core.editor "nvim"'
-eval 'git config --global rerere.enabled true'
-
-
-export PYTHONDONTWRITEBYTECODE=1
 # Get the username correctly
 function user() {
     echo "$(id -u -n)"
