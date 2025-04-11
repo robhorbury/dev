@@ -1,24 +1,19 @@
-## Ghostty shell integration for Bash. This should be at the top of your bashrc!
-# if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
-#     builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/bash/ghostty.bash"
-# fi
-
-
+# Set Global variables
 export XDG_CONFIG_HOME=$HOME/.config/
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
+export NAME="RobHorbury"
 
+# Set specific python variables:
 export UV_CONFIG_FILE=$XDG_CONFIG_HOME/uv/uv.toml
 export PIP_CONFIG_FILE=$XDG_CONFIG_HOME/pip/pip.ini
 export PYTHONDONTWRITEBYTECODE=1
+MYENV="./.venv"
 
+# Make sure my bin and scripts are on PATH
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.local/scripts
-bind '"\C-f":"tmux-sessionizer\n"'
-
-
-MYENV="./.venv"
 
 # Define colors correctly
 grn='\033[01;32m'  # Green
@@ -26,6 +21,7 @@ cyn='\033[01;36m'  # Cyan
 blu='\033[01;34m'  # Blue
 clr='\033[00m'     # Reset color
 
+# Custom aliases
 alias pip="python -m pip"
 alias pytest="python -m pytest"
 alias qpytest="LOG_LEVEL=CRITICAL pytest --quiet"
@@ -39,7 +35,58 @@ alias tree="git ls-files --exclude-standard | sed -e 's;[^/]*/;|____;g;s;____|; 
 
 alias load_bash="source $HOME/.bash_profile"
 
+
+
+# Setup Bash prompt: -----------
+
+# Function to get the current Git branch
+function git_branch() {
+    # Get branch name or commit hash if detached
+    branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
+
+    if [ -n "$branch" ]; then
+        echo " ($branch)"
+    fi
+}
+
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Mac OSX specific setup
+    tmux=$(which tmux)
+    alias tmux="$tmux -2"
+    bind '"\C-f":"tmux-sessionizer\n"'
+
+    # Function to set up the prompt
+    #
+    function bash_prompt() {
+        PS1="${cyn}${NAME}:${blu} \W${grn}$(git_branch)${clr} \$ "
+    }
+
+    # Apply the prompt function dynamically
+    PROMPT_COMMAND=bash_prompt
+else
+    # Windows setup
+    # Function to set up the prompt
+    function bash_prompt() {
+        PS1="${cyn}${NAME}:${blu} \W${orange}$(git_branch)${clr} \$ "
+    }
+
+    # Apply the prompt function dynamically
+    PROMPT_COMMAND=bash_prompt
+fi
+
+
+# Python functionality ----------
+function venva () {
+    source $MYENV/Scripts/activate
+}
+function dvenv {
+        deactivate || print "Failed to deactivate virtualenv: .venv"
+}
+
+# Git functionality -------------
 function clean_git {
+    # If we have no argument, then prune but do not force delete
     if [ -z "$1" ]
     then
         git fetch --prune
@@ -47,6 +94,7 @@ function clean_git {
     else
         case $1 in
             -f)
+            # With force flag, force deletion
             echo "Forcing deletion"
             git fetch --prune
             git branch -vv | grep 'gone]' | awk '{print $1}' | xargs git branch -D
@@ -61,53 +109,7 @@ function clean_git {
 }
 
 
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-        # Mac OSX
-    tmux=$(which tmux)
-    alias tmux="$tmux -2"
-
-    # Function to set up the prompt
-    function bash_prompt() {
-        PS1="${cyn}$(user):${blu} \W${grn}$(git_branch)${clr} \$ "
-    }
-
-    # Apply the prompt function dynamically
-    PROMPT_COMMAND=bash_prompt
-else
-    # Function to set up the prompt
-    function bash_prompt() {
-        PS1="${cyn}$(user):${blu} \W${orange}$(git_branch)${clr} \$ "
-    }
-
-    # Apply the prompt function dynamically
-    PROMPT_COMMAND=bash_prompt
-fi
-function venva () {
-  source $MYENV/Scripts/activate
-}
-
-
-function dvenv {
-        deactivate || print "Failed to deactivate virtualenv: .venv"
-}
-
-# Get the username correctly
-function user() {
-    echo "$(id -u -n)"
-}
-
-# Function to get the current Git branch
-function git_branch() {
-    # Get branch name or commit hash if detached
-    branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
-
-    if [ -n "$branch" ]; then
-        echo " ($branch)"
-    fi
-}
-
-
+# Fuzzy finder setup: -------------
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "$(fzf --bash)"
 
@@ -158,4 +160,5 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 alias nf='nvimGoToFiles'
 alias ngl='nvimGoToLine'
 
+# Setup zoxide: ---------
 eval "$(zoxide init bash)"

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Set global git configs:
 git config --global user.name "Rob Horbury"
 
 git config --global core.editor "nvim"
@@ -14,11 +15,12 @@ git config --global http.sslverify true
 git config --global diff.tool vimdiff
 git config --global core.excludeFiles $XDG_CONFIG_HOME/git/ignore
 
+# In these two locations, I want to use custom git configs:
 git config --global includeif.gitdir:"~/work/asda/**.path" ~/work/asda/.gitconfig
 git config --global includeif.gitdir:"~/personal/**.path" ~/personal/.gitconfig
 
 
-# Setup ssh if not existing:
+# Setup ssh if not existing, first personal:
 if [ -f "$HOME/.ssh/github-personal" ]; then
   echo "personal SSH key exists"
 else
@@ -26,6 +28,7 @@ else
   ssh-keygen -t ed25519 -f ~/.ssh/github-personal
 fi
 
+# Then for asda
 if [ -f "$HOME/.ssh/github-asda" ]; then
   echo "Asda SSH key exists"
 else

@@ -11,3 +11,5 @@ mkdir -p $HOME/personal
 pushd $HOME/personal/
 
 git clone https://github.com/robhorbury/package-transfer
+
+popd
