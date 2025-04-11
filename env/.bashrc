@@ -163,5 +163,8 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 alias nf='nvimGoToFiles'
 alias ngl='nvimGoToLine'
 
+# Get rid of hanging agent:
+sshagent_kill &> /dev/null
+
 # Setup zoxide: ---------
 eval "$(zoxide init bash)"
