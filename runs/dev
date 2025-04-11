@@ -14,8 +14,8 @@ git config --global http.sslverify true
 git config --global diff.tool vimdiff
 git config --global core.excludeFiles $XDG_CONFIG_HOME/git/ignore
 
-git config --global includeif.gitdir:"~/work/asda/**.config" ~/work/asda/.gitconfig
-git config --global includeif.gitdir:"~/personal/**.config" ~/personal/.gitconfig
+git config --global includeif.gitdir:"~/work/asda/**.path" ~/work/asda/.gitconfig
+git config --global includeif.gitdir:"~/personal/**.path" ~/personal/.gitconfig
 
 
 # Setup ssh if not existing:
