@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Custom aliases
+alias ls="ls --color=auto"
 alias hg="history | grep"
 alias vim="nvim"
 alias sshagent="eval $(ssh-agent -s)"
