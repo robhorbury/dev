@@ -107,14 +107,6 @@ function git_branch() {
     fi
 }
 
-# Function to set up the prompt
-function bash_prompt() {
-    PS1="${cyn}$(user):${blu} \W${grn}$(git_branch)${clr} \$ "
-}
-
-# Apply the prompt function dynamically
-PROMPT_COMMAND=bash_prompt
-
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "$(fzf --bash)"
