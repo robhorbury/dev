@@ -3,6 +3,7 @@
 # Set environment variables for configuration files
 export UV_CONFIG_FILE="$XDG_CONFIG_HOME/uv/uv.toml"
 export PIP_CONFIG_FILE="$XDG_CONFIG_HOME/pip/pip.ini"
+export PYSPARK_PYTHON=python
 export PYTHONDONTWRITEBYTECODE=1
 
 # Alias for Python-related commands
