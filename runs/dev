@@ -12,8 +12,17 @@ git config --global branch.sort -committerdate
 git config --global http.sslbackend openssl
 git config --global http.postbuffer 500000000
 git config --global http.sslverify true
-git config --global diff.tool vimdiff
 git config --global core.excludeFiles $XDG_CONFIG_HOME/git/ignore
+
+# Diff tool config
+git config --global diff.tool nvimdiff
+git config --global difftool.nvimdiff.cmd 'nvim -d "$LOCAL" "$REMOTE"'
+git config --global difftool.prompt false
+
+# Merge tool config
+git config --global merge.tool nvimdiff
+git config --global mergetool.nvimdiff.cmd 'nvim -d "$LOCAL" "$MERGED" "$REMOTE"'
+git config --global mergetool.prompt false
 
 # In these two locations, I want to use custom git configs:
 git config --global includeif.gitdir:"~/work/asda/**.path" ~/work/asda/.gitconfig
