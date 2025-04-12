@@ -12,8 +12,10 @@ function git_branch() {
 
 # Function to get the active Python venv name
 function venv_prompt() {
+    last_2_names=""
     if [[ -n "$VIRTUAL_ENV" ]]; then
-        echo "(${VIRTUAL_ENV##*/})"
+        last_2_names=`echo $VIRTUAL_ENV | awk -F/ '{print $(NF-1)"/"$(NF)}'`
+        echo "(${last_2_names})"
     fi
 }
 
@@ -23,12 +25,12 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias tmux="$tmux -2"
     bind '"\C-f":"tmux-sessionizer\n"'
 
-    venv=$(venv_prompt)
-    newline=""
-    [[ -n "$venv" ]] && newline="\n"
 
     # Function to set up the prompt
     function bash_prompt() {
+        venv=$(venv_prompt)
+        newline=""
+        [[ -n "$venv" ]] && newline="\n"
         PS1="${grey}${venv}${clr}${newline}${cyn}${NAME}:${blu} \W${grn}$(git_branch)${clr} \$ "
     }
 
@@ -36,6 +38,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else
     # Windows or other OS setup
     function bash_prompt() {
+        venv=$(venv_prompt)
+        newline=""
+        [[ -n "$venv" ]] && newline="\n"
         PS1="${grey}${venv}${clr}${newline}${cyn}${NAME}:${blu} \W${dull_cyan}$(git_branch)${clr} \$ "
     }
 
