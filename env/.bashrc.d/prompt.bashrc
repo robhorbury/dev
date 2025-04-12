@@ -4,11 +4,16 @@ NAME="RobHorbury"
 
 # Function to get the current Git branch
 function git_branch() {
-    # Get branch name or commit hash if detached
     branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
-
     if [ -n "$branch" ]; then
         echo " ($branch)"
+    fi
+}
+
+# Function to get the active Python venv name
+function venv_prompt() {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        echo "(${VIRTUAL_ENV##*/})"
     fi
 }
 
@@ -18,21 +23,22 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias tmux="$tmux -2"
     bind '"\C-f":"tmux-sessionizer\n"'
 
+    venv=$(venv_prompt)
+    newline=""
+    [[ -n "$venv" ]] && newline="\n"
+
     # Function to set up the prompt
-    #
     function bash_prompt() {
-        PS1="${cyn}${NAME}:${blu} \W${grn}$(git_branch)${clr} \$ "
+        PS1="${grey}${venv}${clr}${newline}${cyn}${NAME}:${blu} \W${grn}$(git_branch)${clr} \$ "
     }
 
-    # Apply the prompt function dynamically
     PROMPT_COMMAND=bash_prompt
 else
-    # Windows setup
-    # Function to set up the prompt
+    # Windows or other OS setup
     function bash_prompt() {
-        PS1="${cyn}${NAME}:${blu} \W${orange}$(git_branch)${clr} \$ "
+        PS1="${grey}${venv}${clr}${newline}${cyn}${NAME}:${blu} \W${dull_cyan}$(git_branch)${clr} \$ "
     }
 
-    # Apply the prompt function dynamically
     PROMPT_COMMAND=bash_prompt
 fi
+
