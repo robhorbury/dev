@@ -9,7 +9,14 @@ git config --global push.autoSetupRemote true
 git config --global init.defaultBranch main
 git config --global submodule.recurse true
 git config --global branch.sort -committerdate
+
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
 git config --global http.sslbackend openssl
+else
+git config --global http.sslBackend schannel
+fi
+
 git config --global http.postbuffer 500000000
 git config --global http.sslverify true
 git config --global core.excludeFiles $XDG_CONFIG_HOME/git/ignore
