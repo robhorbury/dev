@@ -41,7 +41,7 @@ else
         venv=$(venv_prompt)
         newline=""
         [[ -n "$venv" ]] && newline="\n"
-        PS1="${grey}${venv}${clr}${newline}${cyn}${NAME}:${blu} \W${dull_cyan}$(git_branch)${clr} \$ "
+        PS1="${grey}${venv}${clr}${newline}${washed_out_orange}${NAME}:${blu} \W${dull_cyan}$(git_branch)${clr} \$ "
     }
 
     PROMPT_COMMAND=bash_prompt
