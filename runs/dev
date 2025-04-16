@@ -10,6 +10,8 @@ git config --global init.defaultBranch main
 git config --global submodule.recurse true
 git config --global branch.sort -committerdate
 
+git config --global alias.lg 'log --graph --format="%C(yellow)%h%Creset %C(green)%cn%Creset %s %C(red bold)%d%Creset" --decorate'
+
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 git config --global http.sslbackend openssl
