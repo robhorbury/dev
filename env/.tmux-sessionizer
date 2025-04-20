@@ -6,7 +6,7 @@
 #
 # could be cool!!
 # this means i could create a neovim plugin to shoot commands out to "scartch"
-if [[ "$(pwd)" == ~/personal ]]; then
+if [[ "$(pwd)" == ~/personal/dev ]]; then
     clear
     return
 fi
