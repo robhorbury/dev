@@ -78,6 +78,9 @@ update_files $DEV_ENV/env/.local/apps $HOME/.local/apps
 update_files $DEV_ENV/env/.local/templates $HOME/.local/templates
 update_files $DEV_ENV/env/.bashrc.d $HOME/.bashrc.d
 
+rm $HOME/.local/bin/nvim
+ln -s $HOME/.local/apps/nvim-macos-arm64/bin/nvim $HOME/.local/bin/nvim
+
 copy $DEV_ENV/env/.bashrc $HOME/.bashrc
 copy $DEV_ENV/env/.bash_profile $HOME/.bash_profile
 copy $DEV_ENV/env/.bash_logout $HOME/.bash_logout
