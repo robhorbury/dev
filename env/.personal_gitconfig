@@ -1,4 +1,5 @@
 [user]
+  email = 128512467+robhorbury@users.noreply.github.com
 
 [url "git@github.personal:"]
   insteadOf = https://github.com/
