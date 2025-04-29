@@ -9,7 +9,10 @@
 if [[ "$(pwd)" == ~/personal/dev ]]; then
     clear
     return
+
+
 fi
+
 tmux new-window -dn scratch
 nvim .
 clear
