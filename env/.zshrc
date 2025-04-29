@@ -145,5 +145,4 @@ fi
 # To initialize zoxide, add this to your shell configuration file (usually ~/.zshrc):
 #
 # eval "$(zoxide init zsh)"
-clear
 bash -i
