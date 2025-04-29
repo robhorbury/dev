@@ -74,7 +74,7 @@ copy() {
 
 update_files $DEV_ENV/env/.config $XDG_CONFIG_HOME
 update_files $DEV_ENV/env/.local $HOME/.local
-update_files $DEV_ENV/env/apps $HOME/apps
+update_files $DEV_ENV/env/.local/apps $HOME/.local/apps
 update_files $DEV_ENV/env/.bashrc.d $HOME/.bashrc.d
 
 rm $HOME/.local/bin/nvim
@@ -86,6 +86,7 @@ copy $DEV_ENV/env/.bash_logout $HOME/.bash_logout
 copy $DEV_ENV/env/.zshrc $HOME/.zshrc
 copy $DEV_ENV/dev-env $HOME/.local/scripts/dev-env
 copy $DEV_ENV/env/.xprofile $HOME/.xprofile
+copy $DEV_ENV/env/.tmux-sessionizer $HOME/.tmux-sessionizer
 
 copy $DEV_ENV/env/.tmux-default-session $HOME/.tmux-default-session
 

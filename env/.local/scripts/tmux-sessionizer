@@ -34,14 +34,14 @@ sanity_check() {
 
 switch_to() {
     if [[ -z $TMUX ]]; then
-        tmux attach-session -t $1
+        tmux attach-session -t "$1"
     else
-        tmux switch-client -t $1
+        tmux switch-client -t "$1"
     fi
 }
 
 has_session() {
-    tmux list-sessions | grep -q "^$1:"
+    tmux has-session -t "$1" 2>/dev/null
 }
 
 hydrate() {
@@ -111,9 +111,9 @@ if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     hydrate "$selected_name" "$selected"
 fi
 
-if ! has_session $selected_name; then
-    tmux new-session -ds $selected_name -c $selected
-    hydrate $selected_name $selected
+if ! has_session "$selected_name"; then
+    tmux new-session -ds "$selected_name" -c "$selected"
+    hydrate "$selected_name" "$selected"
 fi
 
 switch_to "$selected_name"

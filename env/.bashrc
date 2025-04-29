@@ -13,9 +13,10 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export VISUAL=vi
 export EDITOR=vi
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 if [[ -d "$HOME/.bashrc.d" ]]; then
     for file in "$HOME"/.bashrc.d/*.bashrc; do
         [ -f "$file" ] && source "$file"
     done
 fi
-
