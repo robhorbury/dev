@@ -1,6 +1,6 @@
 HISTFILESIZE=10000
 HISTCONTROL=erasedups:ignoresace
-HISTIGNORE="ls:ll:export *:history:hg:exit: *:source *.venv/Scripts/activate tmux-sessionizer"
+HISTIGNORE="ls:ll:export *:history:hg:exit: *:source *.venv/Scripts/activate :tmux-sessionizer"
 
 export PROMPT_COMMAND="history -a"
 

@@ -10,12 +10,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-<<<<<<< Updated upstream
-export VISUAL=vi
-export EDITOR=vi
-=======
 export PATH=$PATH:$XDG_DATA_HOME/uv/python/cpython-3.10.17-macos-aarch64-none/bin
-
 
 which nvim > /dev/null 2>&1
 NVIM_EXISTS_EXIT_CODE=$?
@@ -33,8 +28,6 @@ else
   export VISUAL=vi
   export EDITOR=vi
 fi
-
->>>>>>> Stashed changes
 
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
