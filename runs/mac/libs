@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-brew install git ripgrep zoxide uv
+brew install git ripgrep zoxide uv fd
 
 git clone https://github.com/junegunn/fzf $HOME/personal/fzf
 $HOME/personal/fzf/install
