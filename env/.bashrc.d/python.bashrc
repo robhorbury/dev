@@ -5,6 +5,8 @@ export UV_CONFIG_FILE="$XDG_CONFIG_HOME/uv/uv.toml"
 export PIP_CONFIG_FILE="$XDG_CONFIG_HOME/pip/pip.ini"
 export PYSPARK_PYTHON=python
 export PYTHONDONTWRITEBYTECODE=1
+export local_host_ip=$(cat /etc/hosts | grep "\tlocalhost" | awk '{sub(/\t.*/,x)}1')
+export SPARK_LOCAL_IP=$local_host_ip
 
 # Alias for Python-related commands
 alias pip="python -m pip"
