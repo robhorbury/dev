@@ -2,11 +2,14 @@
 
 theme = rose-pine
 background = 000000
+font-size=14
+font-thicken = true
 
 
 shell-integration-features = no-cursor,no-sudo,no-title
 gtk-titlebar = false
 
 # what is a prefix?
-# keybind = ctrl+d=scroll_page_fractional:0.5
-# keybind = ctrl+u=scroll_page_fractional:-0.5
+keybind = ctrl+h=scroll_page_fractional:0.5
+keybind = ctrl+j=scroll_page_fractional:-0.5
+
