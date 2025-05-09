@@ -2,6 +2,7 @@
 
 # Set global git configs:
 git config --global user.name "Rob Horbury"
+git config --global user.email "128512467+robhorbury@users.noreply.github.com"
 
 git config --global core.editor "nvim"
 git config --global rerere.enabled true
@@ -9,6 +10,7 @@ git config --global push.autoSetupRemote true
 git config --global init.defaultBranch main
 git config --global submodule.recurse true
 git config --global branch.sort -committerdate
+git config --global pull.rebase true
 
 git config --global alias.lg 'log --graph --format="%C(yellow)%h%Creset %C(green)%cn%Creset %s %C(red bold)%d%Creset" --decorate'
 
