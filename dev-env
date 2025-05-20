@@ -84,6 +84,7 @@ copy $DEV_ENV/dev-env $HOME/.local/scripts/dev-env
 copy $DEV_ENV/env/.xprofile $HOME/.xprofile
 
 copy $DEV_ENV/env/.ssh_config $HOME/.ssh/config
+copy $HOME/personal/venv-lookup/venv-lookup $HOME/.local/bin/venv-lookup
 
 if [[ $replace_git_config == "1" ]]; then
     copy $DEV_ENV/env/.personal_gitconfig $HOME/personal/.gitconfig
