@@ -83,6 +83,8 @@ copy $DEV_ENV/env/.zshrc $HOME/.zshrc
 copy $DEV_ENV/dev-env $HOME/.local/scripts/dev-env
 copy $DEV_ENV/env/.xprofile $HOME/.xprofile
 
+copy $DEV_ENV/env/.tmux-default-session $HOME/.tmux-default-session
+
 copy $DEV_ENV/env/.ssh_config $HOME/.ssh/config
 copy $HOME/personal/venv-lookup/venv-lookup $HOME/.local/bin/venv-lookup
 
