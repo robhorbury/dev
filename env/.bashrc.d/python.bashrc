@@ -50,11 +50,19 @@ function clear_venv_cache() {
     venv-lookup -clear
 }
 
+if [[ -z "$LAST_DIR" ]]; then
+    LAST_DIR="$PWD"
+fi
+
 # Track the current directory and detect when it changes
 function on_directory_change() {
     # Call the function to activate the appropriate virtual environment or deactivate it
-    activate_venv
-}
+    if [[ "$PWD" != "$LAST_DIR" ]]; then
+        LAST_DIR="$PWD"
+        deactivate_venv
+        activate_venv
+        fi
+    }
 
 
 # Watch for changes in the directory and apply the venv update
