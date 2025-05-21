@@ -60,8 +60,8 @@ function on_directory_change() {
     if [[ "$PWD" != "$LAST_DIR" ]]; then
         LAST_DIR="$PWD"
         deactivate_venv
-        activate_venv
         fi
+    activate_venv
     }
 
 

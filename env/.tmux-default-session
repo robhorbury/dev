@@ -8,6 +8,17 @@ if [[ "$(pwd)" == $HOME/personal ]]; then
     clear
     return
 fi
+
+
+if [[ "$(pwd)" == $HOME/personal/dev ]]; then
+    tmux new-window -dn scratch
+    tmux send-keys -t "scratch" 'export DEV_ENV=$HOME/personal/dev' Enter
+    tmux send-keys -t "scratch" 'printf "\033c"' Enter
+    export DEV_ENV=$HOME/personal/dev
+    vim .
+    return
+fi
+
 tmux new-window -dn scratch
 vim .
-clear
+printf "\033c"
