@@ -42,6 +42,14 @@ function refresh_venv_cache() {
     venv-lookup -refresh
 }
 
+function refresh_venv() {
+    venv-lookup -refresh-dir $(pwd)
+}
+
+function clear_venv_cache() {
+    venv-lookup -clear
+}
+
 # Track the current directory and detect when it changes
 function on_directory_change() {
     # Call the function to activate the appropriate virtual environment or deactivate it
