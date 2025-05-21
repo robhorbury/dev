@@ -41,7 +41,7 @@ switch_to() {
 }
 
 has_session() {
-    tmux has-session -t "$1" 2>/dev/null
+    tmux list-sessions | grep -q "^$1:"
 }
 
 hydrate() {
