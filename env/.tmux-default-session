@@ -12,8 +12,17 @@ fi
 
 if [[ "$(pwd)" == $HOME/personal/dev ]]; then
     tmux new-window -dn scratch
+    tmux new-window -dn nvim-config
+
     tmux send-keys -t "scratch" 'export DEV_ENV=$HOME/personal/dev' Enter
     tmux send-keys -t "scratch" 'printf "\033c"' Enter
+
+
+    tmux send-keys -t "nvim-config" 'export DEV_ENV=$HOME/personal/dev' Enter
+    tmux send-keys -t "nvim-config" 'cd ./env/.config/nvim/' Enter
+    tmux send-keys -t "nvim-config" 'printf "\033c"' Enter
+    tmux send-keys -t "nvim-config" 'vim .' Enter
+
     export DEV_ENV=$HOME/personal/dev
     vim .
     return
