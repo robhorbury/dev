@@ -1,0 +1,41 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+
+default_install_hook_types:
+  - pre-commit
+  - commit-msg
+
+default_stages:
+  - pre-commit
+
+repos:
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff version.
+  rev: v0.9.9
+  hooks:
+    # Run the linter.
+    - id: ruff
+      types_or: [ python, pyi ]
+    # Run the formatter.
+    - id: ruff-format
+      types_or: [ python, pyi ]
+
+# Run the commitizen check every time a commit is done
+- repo: local
+  hooks:
+    # Validate commit message pre-commit
+    - id: commitizen_on_commit
+      stages: [ commit-msg ]
+      name: commitizen_on_commit
+      entry: 'cz'
+      args: [ check, --commit-msg-file ] # This allows the commit-msg file (.git/COMMIT_EDITMSG) to be passed to `cz check`
+      language: system
+
+- repo: local
+  hooks:
+    - id: codespell
+      name: codespell
+      entry: 'python -m codespell_lib'
+      language: system
+

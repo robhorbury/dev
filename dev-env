@@ -74,6 +74,8 @@ copy() {
 
 update_files $DEV_ENV/env/.config $XDG_CONFIG_HOME
 update_files $DEV_ENV/env/.local $HOME/.local
+update_files $DEV_ENV/env/.local/apps $HOME/.local/apps
+update_files $DEV_ENV/env/.local/templates $HOME/.local/templates
 update_files $DEV_ENV/env/.bashrc.d $HOME/.bashrc.d
 
 copy $DEV_ENV/env/.bashrc $HOME/.bashrc
@@ -83,11 +85,11 @@ copy $DEV_ENV/env/.zshrc $HOME/.zshrc
 copy $DEV_ENV/dev-env $HOME/.local/scripts/dev-env
 copy $DEV_ENV/env/.xprofile $HOME/.xprofile
 
-copy $DEV_ENV/env/.tmux-default-session $HOME/.tmux-default-session
-
 copy $DEV_ENV/env/.ssh_config $HOME/.ssh/config
 copy $HOME/personal/venv-lookup/venv-lookup $HOME/.local/bin/venv-lookup
 
 if [[ $replace_git_config == "1" ]]; then
     copy $DEV_ENV/env/.personal_gitconfig $HOME/personal/.gitconfig
 fi
+
+source $HOME/.bash_profile

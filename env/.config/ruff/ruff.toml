@@ -1,0 +1,28 @@
+exclude = ["*.ipynb"]
+# Same as Black.
+line-length = 100
+indent-width = 4
+
+[format]
+docstring-code-format = true
+
+[lint]
+select = [
+    "E", # pycodestyle
+    "F", # Pyflakes
+    "UP", # pyupgrade
+    "B", # flake8-bugbear
+    "SIM", # flake8-simplify
+    "I", # isort
+    "D", #Pydocstyle
+    "FIX", #FixMe
+]
+# Skip Docstring format rules:
+# D212 - Docstring should start immediately after """
+# D200 - Docstring should be one line if it fits
+# D415 - Force first line to end with punctuation
+ignore = ["D212", "D200", "D415", "D104"]
+
+
+[lint.pydocstyle]
+convention = "google"

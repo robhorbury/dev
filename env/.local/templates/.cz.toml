@@ -1,0 +1,5 @@
+[tool.commitizen.customize]
+schema_pattern = "^(break|build|bump|docs|feat|fix|refactor|chore|test):(\\s.*)"
+
+# To parse commit messages so they can be formatted correctly in CHANGELOG.md.
+commit_parser = "^(?P<change_type>break|build|bump|docs|feat|fix|refactor|chore|test):\\s(?P<message>.*)?"
