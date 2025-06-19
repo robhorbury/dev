@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-brew install git ripgrep zoxide uv fd java jq
+brew install git ripgrep zoxide uv fd java jq gh
 
 git clone https://github.com/junegunn/fzf $HOME/personal/fzf
 $HOME/personal/fzf/install
