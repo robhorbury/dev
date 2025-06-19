@@ -2,7 +2,14 @@
 
 export PATH=$PATH:$HOME/go/bin
 export GOPATH=$HOME/go
-DEFAULT_GO_VERSION=$( go version | grep -o "[0-9].*[0-9].*[0-9] " )
+
+
+which go > /dev/null 2>&1
+GO_EXISTS_EXIT_CODE=$?
+
+if [[ GO_EXISTS_EXIT_CODE==0 ]]; then
+  DEFAULT_GO_VERSION=$( go version | grep -o "[0-9].*[0-9].*[0-9] " )
+fi
 
 function init_go_project() {
 
