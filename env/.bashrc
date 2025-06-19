@@ -36,9 +36,25 @@ function append_lines_to_file() {
 }
 
 
+<<<<<<< Updated upstream
+=======
+which go > /dev/null 2>&1
+GO_EXISTS_EXIT_CODE=$?
+
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+>>>>>>> Stashed changes
 if [[ -d "$HOME/.bashrc.d" ]]; then
     for file in "$HOME"/.bashrc.d/*.bashrc; do
+      filename=$( basename $file )
+      if [[ $filename == "go.bashrc" ]]; then
+        if [[ $GO_EXISTS_EXIT_CODE == 0 ]]; then
+          [ -f "$file" ] && source "$file"
+        fi
+      else
         [ -f "$file" ] && source "$file"
+      fi
     done
 fi
 
