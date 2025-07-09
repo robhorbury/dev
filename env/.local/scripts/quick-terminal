@@ -7,7 +7,7 @@ tmux has-session -t $SESSION 2>/dev/null
 
 if [ $? != 0 ]; then
   # Create new session with background color env variable
-  tmux new-session -d -s $SESSION "export TERMINAL_BG_COLOR='\e]11;#191724\a'; exec \$SHELL"
+  tmux new-session -d -s $SESSION "exec \$SHELL"
 fi
 
 # Attach to the session
