@@ -85,7 +85,8 @@ copy $DEV_ENV/env/.zshrc $HOME/.zshrc
 copy $DEV_ENV/dev-env $HOME/.local/scripts/dev-env
 copy $DEV_ENV/env/.xprofile $HOME/.xprofile
 
-copy $DEV_ENV/env/.config/amethyst/config.yml $HOME/.amethyst.yml
+copy $DEV_ENV/env/.config/yabai/yabai.config $HOME/.yabairc
+copy $DEV_ENV/env/.config/yabai/skhdrc.config $HOME/.skhdrc
 
 copy $DEV_ENV/env/.ssh_config $HOME/.ssh/config
 copy $HOME/personal/venv-lookup/venv-lookup $HOME/.local/bin/venv-lookup

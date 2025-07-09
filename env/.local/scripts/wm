@@ -1,0 +1,21 @@
+#!/bin/bash
+
+SESSION="wm"
+
+# Check if inside tmux already
+if [ -n "$TMUX" ]; then
+  echo "You are inside tmux already. Creating new detached session: $SESSION"
+  tmux new-session -d -s "$SESSION"
+  tmux send-keys -t "$SESSION:1.0" "yabai" C-m
+  tmux split-window -v -t "$SESSION:1"
+  tmux send-keys -t "$SESSION:1.1" "skhd" C-m
+  echo "New tmux session '$SESSION' created and processes started."
+else
+  # Not inside tmux, create session and attach
+  tmux new-session -d -s "$SESSION"
+  tmux send-keys -t "$SESSION:1.0" "yabai" C-m
+  tmux split-window -v -t "$SESSION:1"
+  tmux send-keys -t "$SESSION:1.1" "skhd" C-m
+  tmux attach -t "$SESSION"
+fi
+

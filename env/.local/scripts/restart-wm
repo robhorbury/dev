@@ -1,0 +1,11 @@
+#!/bin/bash
+
+SESSION="wm"
+
+# Kill existing session if it exists
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+  echo "Killing existing tmux session: $SESSION"
+  tmux kill-session -t "$SESSION"
+fi
+
+wm

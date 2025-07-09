@@ -5,6 +5,8 @@ background = 000000
 font-size=15
 font-thicken = true
 
+macos-non-native-fullscreen=true
+macos-titlebar-style = hidden
 
 shell-integration-features = no-cursor,no-sudo,no-title
 gtk-titlebar = false
@@ -13,3 +15,9 @@ gtk-titlebar = false
 keybind = ctrl+j=scroll_page_fractional:0.5
 keybind = ctrl+k=scroll_page_fractional:-0.5
 
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+quick-terminal-position=center
+
+
+background-opacity = 0.85
+background-blur-radius = 30
