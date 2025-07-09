@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+sudo defaults write com.apple.universalaccess reduceMotion -bool true
+
+defaults write com.apple.finder AppleShowAllFiles -bool true
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+# When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+# Minimize windows into their application’s icon
+defaults write com.apple.dock minimize-to-application -bool true
+# Make Dock icons of hidden applications translucent
+defaults write com.apple.dock showhidden -bool true
+# Don’t show recent applications in Dock
+defaults write com.apple.dock show-recents -bool false
+
+killall Finder
+killall Dock
