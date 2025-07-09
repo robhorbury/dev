@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
 # Define colors correctly
-grn='\033[01;32m\]'  # Green
-cyn='\033[01;36m\]'  # Cyan
-blu='\033[01;34m\]'  # Blue
-orange='\033[38;5;208m\]'
-dull_cyan='\033[38;5;72m\]'
-washed_out_orange='\033[38;5;216m\]'
+grn='\[\033[01;32m\]'        # Green
+cyn='\[\033[01;36m\]'        # Cyan
+blu='\[\033[01;34m\]'        # Blue
+orange='\[\033[38;5;208m\]'
+dull_cyan='\[\033[38;5;72m\]'
+washed_out_orange='\[\033[38;5;216m\]'
 grey='\[\033[0;90m\]'
-clr='\033[00m\]' 
+clr='\[\033[00m\]'           # Reset color
+
 
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
