@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+brew install --cask visual-studio-code
+
+source $HOME/.bash_profile
+
+code --install-extension vscodevim.vim

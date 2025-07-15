@@ -64,11 +64,11 @@ update_files() {
 copy() {
     log "removing: $2"
     if [[ $dry_run == "0" ]]; then
-        rm $2
+        rm "$2"
     fi
     log "copying: $1 to $2"
     if [[ $dry_run == "0" ]]; then
-        cp $1 $2
+        cp "$1" "$2"
     fi
 }
 
@@ -87,6 +87,9 @@ copy $DEV_ENV/env/.xprofile $HOME/.xprofile
 
 copy $DEV_ENV/env/.config/yabai/yabai.config $HOME/.yabairc
 copy $DEV_ENV/env/.config/yabai/skhdrc.config $HOME/.skhdrc
+
+copy "$DEV_ENV/env/.vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+copy "$DEV_ENV/env/.vscode/keybindings.json" "$HOME/Library/Application Support/Code/User/keybindings.json"
 
 copy $DEV_ENV/env/.ssh_config $HOME/.ssh/config
 copy $HOME/personal/venv-lookup/venv-lookup $HOME/.local/bin/venv-lookup
