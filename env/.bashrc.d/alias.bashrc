@@ -10,5 +10,12 @@ alias tree="git ls-files --exclude-standard | sed -e 's;[^/]*/;|____;g;s;____|; 
 
 alias load_bash="source $HOME/.bash_profile"
 
+
+function yt-download () {
+
+yt-dlp -x --no-playlist --audio-format  mp3 --audio-quality 0 -o "%(title)s.%(ext)s" "$1"
+
+}
+
 # Get rid of hanging agent:
 sshagent_kill &> /dev/null
